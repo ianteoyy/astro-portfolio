@@ -45,4 +45,8 @@
   body {
     @apply w-full;
   }
+
+  section {
+    @apply max-w-screen-lg;
+  }
 }

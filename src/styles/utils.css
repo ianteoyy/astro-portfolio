@@ -30,4 +30,19 @@
     --color-text: 30deg 18% 12%;
     --color-background: 30deg 18% 95%;
   }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-normal;
+  }
+
+  html {
+    @apply font-light;
+  }
+
+  html,
+  body {
+    @apply w-full;
+  }
 }

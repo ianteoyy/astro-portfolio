@@ -8,7 +8,7 @@ import { Image } from "astro:assets";
 ---
 
 <Layout title="Hi, I'm Ian!">
-  <main class="space-y-12">
+  <main class="space-y-12 p-4">
     <h1 class="text-4xl mb-4 font-medium relative">
       <span class="sr-only">Hi, I'm Ian!</span>
       <span class="text-wrapper relative inline-block overflow-hidden">
@@ -41,9 +41,6 @@ import { Image } from "astro:assets";
           React <Icon name="logos:react" class="w-4 h-4 inline" />
         </li>
         <li class="list-disc">
-          Astro <Icon name="simple-icons:astro" class="w-4 h-4 inline" />
-        </li>
-        <li class="list-disc">
           Typescript <Icon
             name="simple-icons:typescript"
             class="w-4 h-4 inline"
@@ -74,7 +71,7 @@ import { Image } from "astro:assets";
         <li class="list-none">
           <a
             href="https://volcanic.wafflemooncake.dev"
-            class="grid grid-cols-3 gap-4 group"
+            class="sm:grid grid-cols-3 gap-4 group"
             target="_blank"
           >
             <div class="col-span-2">
@@ -92,7 +89,7 @@ import { Image } from "astro:assets";
             </div>
             <Image
               src={volcanic}
-              class="w-64 scale-95 brightness-95 aspect-video object-cover group-hover:scale-100 transition group-hover:brightness-100"
+              class="w-64 hidden sm:block max-w-full scale-100 brightness-95 aspect-video object-cover group-hover:scale-105 transition group-hover:brightness-100"
               width={volcanic.width}
               height={volcanic.height}
               alt="Screenshot of the Volcanic HR website"
@@ -102,7 +99,7 @@ import { Image } from "astro:assets";
         <li class="list-none">
           <a
             href="https://store.wafflemooncake.dev/"
-            class="grid grid-cols-3 gap-4 group"
+            class="sm:grid grid-cols-3 gap-4 group"
             target="_blank"
           >
             <div class="col-span-2">
@@ -120,7 +117,7 @@ import { Image } from "astro:assets";
             </div>
             <Image
               src={kuvira}
-              class="w-64 scale-95 brightness-95 aspect-video object-cover group-hover:scale-100 transition group-hover:brightness-100"
+              class="w-64 hidden sm:block max-w-full scale-100 brightness-95 aspect-video object-cover group-hover:scale-105 transition group-hover:brightness-100"
               width={kuvira.width}
               height={kuvira.height}
               alt="Screenshot of the Kuvira storefront"
@@ -128,7 +125,7 @@ import { Image } from "astro:assets";
           </a>
         </li>
         <li class="list-none">
-          <div class="grid grid-cols-3 gap-4">
+          <div class="sm:grid grid-cols-3 gap-4">
             <div class="col-span-2">
               <h3 class="text-lg">???</h3>
               <p class="text-sm">
@@ -141,7 +138,7 @@ import { Image } from "astro:assets";
               </p>
             </div>
             <div
-              class="rounded-lg border-gray-600 w-60 aspect-video border-dashed border-4 bg-gray-400"
+              class="rounded-lg border-gray-600 w-64 hidden sm:block max-w-full aspect-video border-dashed border-4 bg-gray-400"
             >
               <Icon name="octicon:plus-16" class="h-full mx-auto" />
             </div>
@@ -151,7 +148,7 @@ import { Image } from "astro:assets";
     </section>
 
     <section class="space-y-2">
-      <h2 class="text-xl">Find or contact me at these places:</h2>
+      <h2 class="text-xl">Find or contact me:</h2>
       <ul role="list" class="flex gap-2">
         <li
           class="p-1 transition duration-300 hover:bg-gray-300 rounded-lg group"
@@ -228,21 +225,6 @@ import { Image } from "astro:assets";
 </script>
 
 <style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    line-height: 1.6;
-  }
-
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    gap: 1rem;
-  }
-
   .letter {
     transform-origin: 0 100%;
   }

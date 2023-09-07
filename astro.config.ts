@@ -5,9 +5,6 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    assets: true,
-  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

@@ -49,4 +49,8 @@
   section {
     @apply max-w-screen-lg;
   }
+
+  .link {
+    @apply text-accent hover:underline;
+  }
 }

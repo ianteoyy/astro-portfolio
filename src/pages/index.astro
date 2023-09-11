@@ -20,10 +20,7 @@ import { Image } from "astro:assets";
 
     <section>
       <h2 class="text-xl">I'm a Web Developer 👨‍💻</h2>
-      <a
-        href="https://www.wafflemooncake.dev/cv"
-        target="_blank"
-        class="hover:underline"
+      <a href="https://www.wafflemooncake.dev/cv" target="_blank" class="link"
         >Check out my CV! <Icon
           name="gg:external"
           class="w-4 align-top inline"
@@ -61,6 +58,21 @@ import { Image } from "astro:assets";
         </li>
         <li class="list-disc">
           And bits of Rails, Wix, Python and AWS - anything to get stuff done!
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-xl">What I'm working on now:</h2>
+      <ul role="list">
+        <li class="list-disc">
+          Setting this site up! (And learning Astro as I go). Check out my <a
+            href="/library"
+            class="link">component library.</a
+          >
+        </li>
+        <li class="list-disc">
+          Learning Laravel (as a stepping stone to understanding PHP).
         </li>
       </ul>
     </section>

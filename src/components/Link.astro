@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon";
+interface Props {
+  href: string;
+  text: string;
+  variant: "primary" | "secondary";
+  isFilled?: boolean;
+  icon?: {
+    name: string;
+    side: "left" | "right";
+  };
+  className?: string;
+}
+
+const {
+  href,
+  text,
+  variant,
+  icon,
+  className,
+  isFilled = false,
+  ...rest
+} = Astro.props as Props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "text-sm",
+    className,
+    { "hover:underline": !isFilled },
+    { "text-accent": !isFilled && variant === "primary" },
+    {
+      "px-4 py-2 rounded bg-primary text-white hover:[&:not(:active)]:-translate-x-px hover:[&:not(:active)]:-translate-y-px transition hover:[&:not(:active)]:shadow-md hover:[&:not(:active)]:shadow-sharp hover:[&:not(:active)]:shadow-accent":
+        isFilled && variant === "primary",
+    },
+  ]}
+  {...rest}
+>
+  {
+    icon && icon.side === "left" && (
+      <Icon name={icon.name} height="24" width="24" />
+    )
+  }
+  {text}
+  {
+    icon && icon.side === "right" && (
+      <Icon name={icon.name} height="24" width="24" />
+    )
+  }
+</a>

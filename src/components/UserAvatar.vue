@@ -35,9 +35,9 @@ const onClickAvatar = () => {
       <img v-if="data && data.results.length" :src="data.results[0].picture?.thumbnail ?? ''">
     </div>
     <div v-if="data && data.results.length" class="text-start pr-2">
-      <p class="text-xl font-medium" v-text="`${data.results[0].name.first} ${data.results[0].name.last}`">
+      <p class="sm:text-xl font-medium" v-text="`${data.results[0].name.first} ${data.results[0].name.last}`">
       </p>
-      <p class="text-sm">
+      <p class="text-xs sm:text-sm">
         {{ data.results[0].email }}
       </p>
     </div>

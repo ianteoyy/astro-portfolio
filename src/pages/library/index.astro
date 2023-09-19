@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/utils.css";
+import { getCollection } from "astro:content";
+
+const libraryComponents = await getCollection("library");
+---
+
+<Layout title="Hi, I'm Ian!">
+  <main class="space-y-12 p-4">
+    <div>
+      <h1 class="text-title">Component Library</h1>
+      <p>A collection of components I'm working on out of curiosity.</p>
+    </div>
+
+    <section class="space-y-4">
+      <h2>Vue Components</h2>
+      {
+        libraryComponents.map((item) => (
+          <a
+            href={`/library/${item.slug}`}
+            class="rounded w-40 block aspect-square text-center bg-primary/[25%] p-1 hover:-translate-x-0.5 active:translate-x-0 hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+          >
+            <Image
+              src={item.data.thumbnail}
+              alt={`Screenshot of the ${item.data.title} component written in ${item.data.language}`}
+            />
+            <span class="text-sm">{item.data.title}</span>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</Layout>
+
+<script></script>
+
+<style></style>

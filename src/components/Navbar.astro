@@ -1,0 +1,83 @@
+---
+import navData from "../data/navData";
+import Link from "./Link.astro";
+---
+
+<nav class="bg-primary py-4">
+  <div class="navbar container px-2 sm:px-4 mx-auto flex justify-between">
+    <a
+      href="/"
+      class="font-bungee home-link flex items-end gap-2"
+      aria-label="Homepage link"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="home-icon"
+        ><g fill="none" stroke="currentColor" stroke-width="1.5"
+          ><path
+            stroke-linecap="round"
+            d="M22 22H2m0-11l4.063-3.25M22 11l-8.126-6.5a3 3 0 0 0-3.748 0l-.782.625M15.5 5.5v-2A.5.5 0 0 1 16 3h2.5a.5.5 0 0 1 .5.5v5M4 22V9.5m16 0v4m0 8.5v-4.5"
+          ></path><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 22v-5c0-1.414 0-2.121-.44-2.56C14.122 14 13.415 14 12 14c-1.414 0-2.121 0-2.56.44M9 22v-5"
+          ></path><path d="M14 9.5a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"></path></g
+        ></svg
+      >
+      <h1 class="leading-none text-xl hidden sm:inline">Wafflemooncake</h1>
+    </a>
+    <ul>
+      {
+        navData.map((data) => (
+          <li>
+            <Link
+              href={data.path}
+              text={data.name}
+              variant="secondary"
+              data-navLink
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .home-link:hover .home-icon {
+    animation: wiggle 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-iteration-count: 1;
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      rotate: 0;
+    }
+
+    40% {
+      rotate: 15deg;
+    }
+
+    80% {
+      rotate: -15deg;
+    }
+  }
+
+  [aria-current="page"] {
+    @apply font-medium pointer-events-none;
+  }
+</style>
+
+<script>
+  const navLinks = document.querySelectorAll("[data-navLink]");
+
+  navLinks.forEach((link) => {
+    if (link.getAttribute("href") === window.location.pathname) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
+</script>

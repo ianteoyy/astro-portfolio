@@ -38,19 +38,30 @@
   }
 
   html {
-    @apply font-light;
+    @apply font-light bg-background text-text;
   }
 
   html,
   body {
-    @apply w-full;
-  }
-
-  section {
-    @apply max-w-screen-lg;
+    @apply w-full scroll-smooth motion-reduce:scroll-auto;
   }
 
   .link {
     @apply text-accent hover:underline;
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  text {
+    display: none !important;
+  }
+}
+
+@layer utilities {
+  .text-title {
+    @apply text-xl sm:text-3xl font-bold;
   }
 }

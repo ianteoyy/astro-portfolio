@@ -1,5 +1,11 @@
 ---
 import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
+import "../styles/utils.css";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import mooncake from "../assets/svg/mooncake.svg";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
 
 interface Props {
   title: string;
@@ -8,9 +14,9 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <!-- <html lang="en" class="h-full" data-theme="light"> -->
-<html lang="en" class="min-h-full py-8">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -23,27 +29,20 @@ const { title } = Astro.props;
     <title>{title}</title>
 
     <GoogleFontsOptimizer
-      url="https://fonts.googleapis.com/css2?family=Lexend:wght@200;400;500;700&display=swap"
+      url="https://fonts.googleapis.com/css2?family=Bungee&family=Lexend:wght@200;400;500;700&display=swap"
     />
   </head>
-  <body class="grid place-items-center h-full">
-    <slot />
-    <style is:global>
-      html {
-        @apply bg-background text-text;
-      }
-
-      code {
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
-      }
-    </style>
+  <body class="min-h-screen flex flex-col">
+    <Navbar />
+    <main
+      class="flex-grow min-h-px container px-2 sm:px-4 mx-auto py-8 relative"
+    >
+      <Icon
+        name="mooncake"
+        class="absolute w-2/3 -z-10 aspect-square -right-1/4 -top-8 sm:-top-24 lg:-top-64 opacity-20"
+      />
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

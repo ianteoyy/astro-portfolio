@@ -16,10 +16,11 @@ module.exports = {
     },
     fontFamily: {
       sans: ["Lexend", ...defaultTheme.fontFamily.sans],
+      bungee: ["Bungee", ...defaultTheme.fontFamily.sans],
     },
     boxShadow: {
       sharp: "rgb(207, 245, 189) 3px 3px 0px -1px",
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

@@ -1,0 +1,47 @@
+---
+title: "UserAvatar"
+language: "Vue"
+thumbnail: "../../assets/images/library/avatar/thumbnail.png"
+publishDate: "2023-09-20"
+---
+
+import UserAvatar from "../../components/UserAvatar.vue";
+import { Image } from "astro:assets";
+import mihawkRabbit from "../../assets/images/library/avatar/mihawk-rabbit.png";
+
+One day I had to create a user avatar at work and, in terms of interaction, clicking inside the avatar performed an action that would change what is displayed in the avatar.
+
+So in essence, it was both an display element as well as a button.
+
+Now this made little sense, because it's not obvious enough to act as a button - especially because usually when you see an avatar, you'd expect that clicking it brings you to the profile page.
+
+So it got me thinking - is there any way to make it look more like a button? Here's my attempt:
+
+<UserAvatar client:visible class="not-prose" />
+
+## Considerations
+
+First of all, in the case of my example above, clicking on the avatar loads a new user from the [RandomUser API](https://randomuser.me/).
+
+What I came up with was a hover microinteraction where it appears to float when you hovered your cursor over it, like an unpressed button.
+
+Clicking on the button makes it appear 'pushed down' and you'll see a loading indicator slide in as it loads new data. There is a forced 2-second wait time before updating the data, because:
+
+1. The API responds really fast. Giving an extra 2 seconds before updating data locally allows you to see my spinner animation work properly.
+
+2. [Labour perception bias](https://growth.design/case-studies/labor-perception-bias).
+
+3. You get to click on it again to stop the data refetch - which I'll get to next!
+
+## Tanstack Query
+
+I use Tanstack Query at work to handle promises, so as I was working on this portfolio page, I very quickly dismissed using it as it felt like overengineering.
+
+<Image
+  src={mihawkRabbit}
+  alt="I don't hunt rabbits with a cannon - Mihawk from One Piece"
+/>
+
+However, when I started writing the fetch function to get a random user I had to consider load states, error handling, promise cancelling, etc, and perhaps I'm fine using cannons to hunt rabbits after all.
+
+The promise cancelling feature, specifically, was new to me when I was using this library. It wouldn't have been hard to implement it using fetch but to be honest, I didn't know about it until I used this library! Something about standing on the shoulders of giants, I guess.

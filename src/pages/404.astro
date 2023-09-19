@@ -1,0 +1,22 @@
+---
+import Link from "../components/Link.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Page Not Found">
+  <div class="min-h-full grid place-items-center text-center">
+    <div class="gap-4 grid justify-items-center">
+      <div>
+        <h1 class="text-2xl">This page doesn't exist!</h1>
+        <p>
+          If it's supposed to exist, please drop me <a
+            href="mailto:bug@wafflemooncake.dev"
+            target="_blannk"
+            class="link">an email</a
+          >!
+        </p>
+      </div>
+      <Link href="/" isFilled text="Back to Home" variant="primary" />
+    </div>
+  </div>
+</Layout>

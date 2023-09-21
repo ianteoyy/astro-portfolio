@@ -15,7 +15,9 @@ const { Content } = await entry.render();
 ---
 
 <LibraryComponentLayout {...entry.data}>
-  <article class="prose-sm prose-ol:list-decimal lg:prose lg:prose-invert">
+  <article
+    class="prose-sm prose-ol:list-decimal lg:prose dark:prose-invert prose"
+  >
     <a href="/library" class="text-sm">Back to the Library</a>
     <Content />
     <a href="#top" class="text-sm">Back to top</a>

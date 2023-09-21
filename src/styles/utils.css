@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  html {
     --color-primary: 100deg 73% 85%;
     --color-accent: 30deg 18% 56%;
     --color-text: 30deg 18% 12%;
@@ -11,24 +11,24 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :root {
+    html {
       --color-primary: 30deg 18% 56%;
       --color-accent: 100deg 73% 85%;
       --color-background: 30deg 18% 12%;
       --color-text: 30deg 18% 95%;
     }
   }
-  :root[data-theme="dark"] {
+  html.dark {
     --color-primary: 30deg 18% 56%;
     --color-accent: 100deg 73% 85%;
     --color-background: 30deg 18% 12%;
     --color-text: 30deg 18% 95%;
   }
-  :root[data-theme="light"] {
+  html.light {
     --color-primary: 100deg 73% 85%;
     --color-accent: 30deg 18% 56%;
     --color-text: 30deg 18% 12%;
-    --color-background: 30deg 18% 95%;
+    --color-background: 30deg 10% 95%;
   }
 
   h1,
@@ -38,7 +38,7 @@
   }
 
   html {
-    @apply font-light bg-background text-text;
+    @apply font-light bg-background text-text transition-colors duration-300;
   }
 
   html,

@@ -10,6 +10,7 @@ interface Props {
     side: "left" | "right";
   };
   className?: string;
+  external?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   icon,
   className,
   isFilled = false,
+  external,
   ...rest
 } = Astro.props as Props;
 ---
@@ -35,6 +37,7 @@ const {
         isFilled && variant === "primary",
     },
   ]}
+  target={external ? "_blank" : "_self"}
   {...rest}
 >
   {
@@ -43,6 +46,16 @@ const {
     )
   }
   {text}
+  {
+    external && (
+      <Icon
+        name="gg:external"
+        class="inline ml-0.5 align-text-top"
+        height="12"
+        width="12"
+      />
+    )
+  }
   {
     icon && icon.side === "right" && (
       <Icon name={icon.name} height="24" width="24" />

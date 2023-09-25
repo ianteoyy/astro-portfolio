@@ -3,45 +3,38 @@ import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 import "../styles/utils.css";
 import Footer from "../components/Footer.astro";
 import Navbar from "../components/Navbar.astro";
-import mooncake from "../assets/svg/mooncake.svg";
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon";
+import Seo from "../components/Seo.astro";
 
-interface Props {
-  title: string;
-}
-
-const { title } = Astro.props;
+const { title, description = "Ian Teo's portfolio page", image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="I'm Ian, and this is my portfolio page!"
-    />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="favicon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
     <GoogleFontsOptimizer
-      url="https://fonts.googleapis.com/css2?family=Bungee&family=Lexend:wght@200;400;500;700&display=swap"
+      url="https://fonts.googleapis.com/css2?family=Bungee&family=Lexend:wght@200;300;400;500;700&display=swap"
     />
+    <Seo {title} {description} {image} />
   </head>
   <body class="min-h-screen flex flex-col overflow-x-hidden">
     <Navbar />
-    <main
-      class="flex-grow min-h-px container px-2 sm:px-4 mx-auto py-8 relative"
+    <div
+      class="flex-grow min-h-px container px-2 sm:px-4 mx-auto py-4 sm:py-8 relative"
     >
       <Icon
         name="mooncake"
         class="absolute w-2/3 -z-10 aspect-square -right-1/4 -top-8 sm:-top-24 lg:-top-64 opacity-20"
       />
       <slot />
-    </main>
+    </div>
     <Footer />
   </body>
 </html>

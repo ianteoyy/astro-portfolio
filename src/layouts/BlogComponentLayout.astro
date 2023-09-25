@@ -7,8 +7,8 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, subtitle, publishDate } = Astro.props;
 ---
 
-<Layout title={`Ian's Blog - ${title}`}>
-  <main class="space-y-12 p-4 lg:w-max mx-auto">
+<Layout title={`${title} - Wafflemooncake Blog`} description={subtitle}>
+  <main class="space-y-12 p-2 sm:p-4 lg:w-max mx-auto">
     <div>
       <h1 class="text-title">{title}</h1>
       <p class="text-sm">{subtitle}</p>

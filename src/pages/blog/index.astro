@@ -15,7 +15,7 @@ const sortedBlogPosts = blogPosts.sort(
 ---
 
 <Layout title="Blog - Wafflemooncake">
-  <main class="space-y-12 p-4">
+  <main class="space-y-12 p-2 sm:p-4 max-w-screen-md mx-auto">
     <div>
       <h1 class="text-title">Blog</h1>
       <p>Thoughts and maybe stuff I'm working on.</p>
@@ -26,7 +26,7 @@ const sortedBlogPosts = blogPosts.sort(
         sortedBlogPosts.sort().map((item, index) => (
           <div
             class:list={[
-              "flex justify-between",
+              "flex justify-between gap-2",
               {
                 "border-b pb-4 dark:border-primary border-accent":
                   index !== sortedBlogPosts.length - 1,
@@ -37,15 +37,17 @@ const sortedBlogPosts = blogPosts.sort(
               <h2>
                 <Link
                   href={`/blog/${item.slug}`}
-                  className="text-xl"
+                  className="sm:text-xl"
                   text={item.data.title}
                   variant="secondary"
                 />
               </h2>
-              <p class="text-sm">{item.data.subtitle}</p>
-              <small class="font-light">
-                Published:{" "}
-                <time>{item.data.publishDate.toISOString().slice(0, 10)}</time>
+              <p class="text-xs sm:text-sm">{item.data.subtitle}</p>
+              <small class="font-light text-xs sm:text-sm">
+                <span class="hidden sm:inline">Published:</span>
+                <time class="tabular-nums">
+                  {item.data.publishDate.toISOString().slice(0, 10)}
+                </time>
               </small>
             </div>
             <a

@@ -1,0 +1,9 @@
+{
+  "title": "Wafflemooncake",
+  "description": "Ian Teo's Web Developer Portfolio",
+  "image": {
+    "src": "/images/image-default.png",
+    "alt": "Wafflemooncake"
+  },
+  "url": "https://www.wafflemooncake.dev"
+}

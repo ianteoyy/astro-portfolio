@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/utils.css";
+import { getCollection } from "astro:content";
+import Link from "../../components/Link.astro";
+
+const blogPosts = await getCollection("blog");
+
+const sortedBlogPosts = blogPosts.sort(
+  (a, b) =>
+    new Date(b.data.publishDate).getTime() -
+    new Date(a.data.publishDate).getTime()
+);
+---
+
+<Layout title="Blog - Wafflemooncake">
+  <main class="space-y-12 p-4">
+    <div>
+      <h1 class="text-title">Blog</h1>
+      <p>Thoughts and maybe stuff I'm working on.</p>
+    </div>
+
+    <section class="space-y-4">
+      {
+        sortedBlogPosts.sort().map((item, index) => (
+          <div
+            class:list={[
+              "flex justify-between",
+              {
+                "border-b pb-4 dark:border-primary border-accent":
+                  index !== sortedBlogPosts.length - 1,
+              },
+            ]}
+          >
+            <div>
+              <h2>
+                <Link
+                  href={`/blog/${item.slug}`}
+                  className="text-xl"
+                  text={item.data.title}
+                  variant="secondary"
+                />
+              </h2>
+              <p class="text-sm">{item.data.subtitle}</p>
+              <small class="font-light">
+                Published:{" "}
+                <time>{item.data.publishDate.toISOString().slice(0, 10)}</time>
+              </small>
+            </div>
+            <a
+              href={`/blog/${item.slug}`}
+              class="hover:-translate-x-0.5 active:translate-x-0 hover:-translate-y-0.5 active:translate-y-0 transition-transform"
+            >
+              <Image
+                class="rounded ml-auto w-40 aspect-video object-cover"
+                src={item.data.thumbnail}
+                alt={item.data.thumbnailAlt}
+              />
+            </a>
+          </div>
+        ))
+      }
+    </section>
+  </main>
+</Layout>
+
+<script></script>
+
+<style></style>

@@ -1,0 +1,124 @@
+---
+title: "Light Mode"
+subtitle: "Because some people like light mode"
+thumbnail: "../../assets/images/blog/light-mode/thumbnail.png"
+thumbnailAlt: "My light/dark mode button"
+publishDate: "2023-09-25"
+---
+
+I haven't had to create a light/dark mode toggle in my career yet but I've always been curious about theming. I am also really bad at color theory, but I found [A Simple Web Developer's Color Guide by Laura Elizabeth](https://www.smashingmagazine.com/2016/04/web-developer-guide-color/) super helpful! As for color schemes, I picked a random one from [ColorHunt](https://colorhunt.co/palettes/popular).
+
+After picking out the colors and testing them out, I set the colors variables in my css file and Tailwind config file
+
+## The CSS and Tailwind config
+
+```css filename="utils.css"
+@layer base {
+  html {
+    --color-primary: 100deg 73% 85%;
+    --color-accent: 30deg 18% 56%;
+    --color-text: 30deg 18% 12%;
+    --color-background: 30deg 18% 95%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      --color-primary: 30deg 18% 56%;
+      --color-accent: 100deg 73% 85%;
+      --color-background: 30deg 18% 12%;
+      --color-text: 30deg 18% 95%;
+    }
+  }
+  html.dark {
+    --color-primary: 30deg 18% 56%;
+    --color-accent: 100deg 73% 85%;
+    --color-background: 30deg 18% 12%;
+    --color-text: 30deg 18% 95%;
+  }
+  html.light {
+    --color-primary: 100deg 73% 85%;
+    --color-accent: 30deg 18% 56%;
+    --color-text: 30deg 18% 12%;
+    --color-background: 30deg 10% 95%;
+  }
+}
+```
+
+```ts filename="tailwind.config.ts"
+module.exports = {
+  darkMode: "class",
+  theme: {
+    colors: {
+      primary: "hsl(var(--color-primary) / <alpha-value>)",
+      accent: "hsl(var(--color-accent) / <alpha-value>)",
+      text: "hsl(var(--color-text) / <alpha-value>)",
+      background: "hsl(var(--color-background) / <alpha-value>)",
+    },
+  },
+};
+```
+
+I suppose there's a ton of ways to set color schemes for Tailwind, but I liked this one since it allowed me to still customize opacity in my classes (e.g. `bg-primary-80`). Plus with the colors set in CSS, I could extend it past light and dark themes later on if I wished!
+
+I finally got to implementing the theme toggle this week. Feel free to try it out on the top right corner of the page!
+
+## The Code
+
+The main considerations I had for my theme switcher were:
+
+1. Initially use the user's default dark mode settings (either on their browser or device settings, without calling the `localStorage`)
+2. Once a user changes the theme, the new theme is stored in the `localStorage`
+3. Since `localStorage` is involved, it also had to work in cases where the user disables the use of cookies.
+4. [Bonus!] It has cool animations when toggling (the degree or presence of coolness is subjective)
+
+```ts
+function changeTheme(toDarkMode: boolean, storeSettings: boolean = true) {
+  const htmlElement = document.querySelector("html") as HTMLHtmlElement;
+  if (toDarkMode) {
+    themeSwitcher.checked = true;
+    htmlElement.classList.add("dark");
+    htmlElement.classList.remove("light");
+  } else {
+    themeSwitcher.checked = false;
+    htmlElement.classList.add("light");
+    htmlElement.classList.remove("dark");
+  }
+  if (storeSettings && navigator.cookieEnabled) {
+    localStorage.setItem("dark-mode", themeSwitcher.checked.toString());
+  }
+}
+
+(function initiallySetDarkModeSettings() {
+  const darkModeStorageSetting = navigator.cookieEnabled
+    ? localStorage.getItem("dark-mode")
+    : null;
+  /*
+    if I didn't fallback to null, the code stops here 
+    and the text in this blog would be dark colored text against a dark colored background
+  */
+
+  if (darkModeStorageSetting !== null) {
+    setThemeBasedOnStorage();
+  } else {
+    setThemeBasedOnSystemPreference();
+  }
+
+  function setThemeBasedOnStorage() {
+    const userManuallySetDarkMode =
+      darkModeStorageSetting && JSON.parse(darkModeStorageSetting);
+    changeTheme(userManuallySetDarkMode, false);
+  }
+
+  function setThemeBasedOnSystemPreference() {
+    const userPrefersDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    changeTheme(userPrefersDarkMode, false);
+    /* the 'false' flag is so I don't commit the theme change to localStorage */
+  }
+})();
+```
+
+The code itself wasn't the hard part of this little project. I feel like if I was asked to implement a theme toggle a year ago, I would definitely have overlooked the user's browser preference. I also would not have considered users who have cookies disabled.
+
+Sometimes I worry about my skills as a developer staying the same but knowing that's not the case makes me feel pretty good! It's probably a good thing I have this blog now, so I can revisit these posts in the future and maybe improve upon them.

@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import LibraryComponentLayout from "../../layouts/LibraryComponentLayout.astro";
+import BlogComponentLayout from "../../layouts/BlogComponentLayout.astro";
 
 export async function getStaticPaths() {
-  const libraryEntries = await getCollection("library");
-  return libraryEntries.map((entry) => ({
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
@@ -14,12 +14,12 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<LibraryComponentLayout {...entry.data}>
+<BlogComponentLayout {...entry.data}>
   <article
     class="prose-sm prose-ol:list-decimal lg:prose dark:prose-invert prose"
   >
-    <a href="/library" class="text-sm">Back to the Library</a>
+    <a href="/blog" class="text-sm">Back to the Blog</a>
     <Content />
     <a href="#top" class="text-sm">Back to top</a>
   </article>
-</LibraryComponentLayout>
+</BlogComponentLayout>

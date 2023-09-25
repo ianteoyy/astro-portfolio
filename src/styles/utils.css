@@ -38,7 +38,7 @@
   }
 
   html {
-    @apply font-light bg-background text-text transition-colors duration-300;
+    @apply bg-background text-text transition-colors duration-300;
   }
 
   html,

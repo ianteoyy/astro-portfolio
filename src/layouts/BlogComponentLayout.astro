@@ -2,16 +2,16 @@
 import type { CollectionEntry } from "astro:content";
 import Layout from "./Layout.astro";
 
-type Props = CollectionEntry<"library">["data"];
+type Props = CollectionEntry<"blog">["data"];
 
-const { title, language, publishDate } = Astro.props;
+const { title, subtitle, publishDate } = Astro.props;
 ---
 
-<Layout title={`Ian's Library - ${title}`}>
+<Layout title={`Ian's Blog - ${title}`}>
   <main class="space-y-12 p-4 lg:w-max mx-auto">
     <div>
       <h1 class="text-title">{title}</h1>
-      <p class="text-sm">Written in {language}</p>
+      <p class="text-sm">{subtitle}</p>
       <p class="mb-4 text-sm">
         Published {publishDate.toISOString().slice(0, 10)}
       </p>

@@ -1,13 +1,14 @@
 ---
-title: "UserAvatar"
-language: "Vue"
-thumbnail: "../../assets/images/library/avatar/thumbnail.png"
+title: "UserAvatar.vue"
+subtitle: "Written in Vue"
+thumbnail: "../../assets/images/blog/avatar/thumbnail.png"
+thumbnailAlt: "Screenshot of my user avatar component"
 publishDate: "2023-09-20"
 ---
 
 import UserAvatar from "../../components/UserAvatar.vue";
 import { Image } from "astro:assets";
-import mihawkRabbit from "../../assets/images/library/avatar/mihawk-rabbit.png";
+import mihawkRabbit from "../../assets/images/blog/avatar/mihawk-rabbit.png";
 
 One day I had to create a user avatar at work and, in terms of interaction, clicking inside the avatar performed an action that would change what is displayed in the avatar.
 
@@ -44,4 +45,4 @@ I use Tanstack Query at work to handle promises, so as I was working on this por
 
 However, when I started writing the fetch function to get a random user I had to consider load states, error handling, promise cancelling, etc, and perhaps I'm fine using cannons to hunt rabbits after all.
 
-The promise cancelling feature, specifically, was new to me when I was using this library. It wouldn't have been hard to implement it using fetch but to be honest, I didn't know about it until I used this library! Something about standing on the shoulders of giants, I guess.
+The promise cancelling feature, specifically, was new to me when I was using this blog. It wouldn't have been hard to implement it using fetch but to be honest, I didn't know about it until I used this blog! Something about standing on the shoulders of giants, I guess.

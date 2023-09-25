@@ -1,6 +1,6 @@
 const navData = [
   {name: 'Home', path: '/'},
-  {name: 'Library', path: '/library/'},
+  {name: 'Blog', path: '/blog/'},
   {name: 'Resume', path: 'https://www.wafflemooncake.dev/cv', external: true},
 ]
 

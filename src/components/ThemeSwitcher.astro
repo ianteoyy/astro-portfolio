@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon";
 ---
 
-<label class="relative w-8 h-8 select-none">
+<label class="relative w-6 h-6 select-none">
   <input id="theme-switcher" class="hidden" type="checkbox" />
   <Icon
     name="pixelarticons:sun"
@@ -23,9 +23,9 @@ import { Icon } from "astro-icon";
     changeTheme(themeSwitcher.checked);
   });
 
-  function changeTheme(isDarkMode: boolean, storeSettings: boolean = true) {
+  function changeTheme(toDarkMode: boolean, storeSettings: boolean = true) {
     const htmlElement = document.querySelector("html") as HTMLHtmlElement;
-    if (isDarkMode) {
+    if (toDarkMode) {
       themeSwitcher.checked = true;
       htmlElement.classList.add("dark");
       htmlElement.classList.remove("light");
@@ -34,13 +34,15 @@ import { Icon } from "astro-icon";
       htmlElement.classList.add("light");
       htmlElement.classList.remove("dark");
     }
-    if (storeSettings) {
+    if (storeSettings && navigator.cookieEnabled) {
       localStorage.setItem("dark-mode", themeSwitcher.checked.toString());
     }
   }
 
   (function initiallySetDarkModeSettings() {
-    const darkModeStorageSetting = localStorage.getItem("dark-mode");
+    const darkModeStorageSetting = navigator.cookieEnabled
+      ? localStorage.getItem("dark-mode")
+      : null;
     if (darkModeStorageSetting !== null) {
       setThemeBasedOnStorage();
     } else {

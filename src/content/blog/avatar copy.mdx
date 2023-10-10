@@ -1,0 +1,60 @@
+---
+title: "A Wordle NY Times Ad Remover"
+subtitle: "Getting rid of the NY Times ad in Wordle (respectfully). No installs or extensions required!"
+thumbnail: "../../assets/images/blog/wordle/thumbnail.png"
+thumbnailAlt: "A picture of WordleBot, probably really disappointed at me"
+publishDate: "2023-10-10"
+---
+
+import { Image } from "astro:assets";
+import analysisPrompt from "../../assets/images/blog/wordle/analysis-prompt.png";
+import wordleAd from "../../assets/images/blog/wordle/the-ad.png";
+
+It's become a routine thing for me to open up two sites at the start of a new day, namely [Wordle](https://www.nytimes.com/games/wordle/index.html) and [CineNerdle2](https://cinenerdle2.app/).
+
+I'd like to think that I'm pretty decent at Wordle, but how would I know how well I stack up against the competition?
+
+<Image
+  src={analysisPrompt}
+  alt="A screen grab of the prompt at the end of a Wordle game for WordleBot to see how well you performed."
+/>
+
+## Enter WordleBot
+
+WordleBot is the game analysis tool to help see how well you did in today's game. It scores your guesses by how lucky they were, or how skillful the guess was, as well as how many potential words there are remaining in the pool.
+
+I don't really understand what determines 'luck' or 'skill' here, but I like seeing what other guesses there might have been. And it's always an ego boost for me when I make the correct guess in fewer turns than the bot.
+
+Either way, if you use WordleBot enough times, eventually you'll come across this screen before you can view the analysis of the day:
+
+<Image
+  src={wordleAd}
+  alt="The ad that eventually comes if you use the WordleBot enough times"
+  width="250"
+/>
+
+## Getting rid of it
+
+I respect the effort that gets put into both NY Times' journalism as well as their games, but I'm not really too interested in what they offer. Perhaps one day when I get more serious about crosswords (their crosswords are pretty good too but require a subscription) or the news, I might! But for now, I just enjoy playing this one game.
+
+So every time I finish my game, I remove this ad by going to the browser console, and make a couple of clicks. I've been doing this dance for a fair bit now, but today I remembered [bookmarklets](https://caiorss.github.io/bookmarklet-maker/) are a thing.
+
+Bookmarklets are basically code saved as browser bookmarks that execute upon being clicked on. So I turned my manual actions into a line of Javascript, and generated a bookmark out of it. From now on, all I need to do when I reach the ad screen is to click on the bookmark!
+
+Here's how to get it working on your device:
+
+1. Right click on [this link](<javascript:(function()%7Bdocument.querySelector('%23standalone-footer').remove()%7D)()%3B>) and save it as a bookmark.
+
+2. When you reach the NY Times ad screen that prevents you from clicking the link to view WordleBot's analysis, click on the bookmark.
+
+3. The ad will disappear, and you can then proceed to gloat or gripe over how you did against the bot!
+
+## The code
+
+For anyone concerned about the safety of it, the code is just a line that removes the ad element from the page. Here it is:
+
+```
+javascript:(function()%7Bdocument.querySelector('%23standalone-footer').remove()%7D)()%3B
+```
+
+You can even hover your cursor over the bookmarklet link and verify it for yourself on the bottom left of the browser. Enjoy Wordle-ing!
